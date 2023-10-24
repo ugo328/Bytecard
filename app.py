@@ -1,3 +1,4 @@
+import flask
 from flask import Flask, redirect, render_template, request, flash
 
 import forms
@@ -6,17 +7,28 @@ from database import db
 
 app = Flask(__name__)
 
-app.secret_key = b'd3fcbe64-7150-11ee-b1fe-93b6661203c1'
+app.secret_key = 'btg'
 
-# Configura banco de dados
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:123456@localhost:3306/byte_card'
-app.config['SQLALCHEMY_ECHO'] = True
-db.init_app(app)
+# Simulando uma estrutura de dados de usuários
+usuarios = {
+    'ugorventura': {'senha': 'ugodahora'},
+    'olemar': {'senha': 'filho'}
+}
 
+    
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        nickname = request.form['nickname']
+        senha = request.form['senha']
 
-@app.route('/')
-def index():
-    return redirect('/cartoes/lista')
+        if nickname in usuarios and usuarios[nickname]['senha'] == senha:
+            seção['logged_in'] = True
+            flash('Login bem-sucedido!')
+            return redirect(url_for('index'))
+        else:
+            flash('Credenciais inválidas. Tente novamente.')
+    return render_template('login.html')
 
 
 @app.route('/cartoes/lista')
