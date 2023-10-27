@@ -7,6 +7,12 @@ from database import db
 
 app = Flask(__name__)
 
+# Configura banco de dados
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:123456@localhost:3306/byte_card'
+app.config['SQLALCHEMY_ECHO'] = True
+db.init_app(app)
+
+# Configure a chave secreta do Flask
 app.secret_key = 'btg'
 
 # Simulando uma estrutura de dados de usuários
@@ -15,31 +21,32 @@ usuarios = {
     'olemar': {'senha': 'filho'}
 }
 
-    
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/')
+def index():
+    return redirect('/cartoes/lista')
+
 def login():
     if request.method == 'POST':
         nickname = request.form['nickname']
         senha = request.form['senha']
 
         if nickname in usuarios and usuarios[nickname]['senha'] == senha:
-            seção['logged_in'] = True
+            session['logged_in'] = True
             flash('Login bem-sucedido!')
             return redirect(url_for('index'))
         else:
             flash('Credenciais inválidas. Tente novamente.')
+
     return render_template('login.html')
 
 
-@app.route('/cartoes/lista')
-def lista_cartoes():
-    return render_template('cartao/lista.html', cartoes=use_cases.lista_cartoes())
-
-
-@app.route('/cartoes/formulario')
-def formulario_cartao(form=None):
-    return render_template('cartao/formulario.html', form=form)
-
+# Rota para a página de logout
+@app.route('/logout')
+def logout():
+    session.pop('logged_in', None)
+    flash('Logout bem-sucedido!')
+    return redirect(url_for('index'))
+    return render_template('login.html')
 
 @app.route('/cartoes/cadastrar', methods=['POST'])
 def cadastra_cartao():
@@ -47,9 +54,7 @@ def cadastra_cartao():
     if form.validate():
         use_cases.cadastra_cartao(form.cliente.data, form.limite.data)
         flash('Cartão cadastrado com sucesso.', 'info')
-
         return redirect('/cartoes/lista')
-
     return formulario_cartao(form)
 
 
