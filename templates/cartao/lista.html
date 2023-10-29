@@ -37,11 +37,9 @@
 						<a href="/cartoes/{{ cartao.id }}/limite" class="btn btn-secondary">Alterar limite</a>
 						<a href="/cartoes/{{ cartao.id }}/fatura" class="btn btn-warning">Ver fatura</a>
 
-						{% if cartao.is_ativo %}
+						{% if cartao.status == 'ativo' %}
 						<a href="/cartoes/{{ cartao.id }}/cancelar" class="btn btn-danger">Cancelar</a>
-						{% endif %}
-						
-						{% if cartao.is_cancelado %}
+						{% else %}
 						<a href="/cartoes/{{ cartao.id }}/ativar" class="btn btn-primary">Ativar</a>
 						{% endif %}
 					</td>
@@ -52,6 +50,3 @@
 	</table>
 </section>
 {% endblock %}
-		
-		
-		
