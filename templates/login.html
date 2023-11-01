@@ -5,27 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bytecard-BTG</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+
+    <!-- Adicione as cores do Banco BTG -->
+    <style>
+      body {
+        background-color: #003366; /* Cor de fundo */
+        color: #FFFFFF; /* Cor do texto */
+      }
+
+      .container {
+        background-color: #FFFFFF; /* Cor do contêiner */
+        border-radius: 10px; /* Cantos arredondados */
+        padding: 20px; /* Espaçamento interno */
+      }
+
+      .btn-primary {
+        background-color: #FF6600; /* Cor do botão */
+        border: none; /* Sem borda */
+        border-radius: 5px; /* Cantos arredondados */
+        color: #FFFFFF; /* Cor do texto do botão */
+        padding: 10px 20px; /* Espaçamento interno do botão */
+        transition: background-color 0.3s; /* Animação de cor ao passar o mouse */
+      }
+
+      .btn-primary:hover {
+        background-color: #FF3300; /* Cor do botão ao passar o mouse */
+      }
+    </style>
+    <!-- Fim das cores do Banco BTG -->
   </head>
   <body>
     <div class="container">
+      <!-- Restante do código -->
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <ul id="messages" class="list-unstyled">
+      {% for message in messages %}
+      <li class="alert alert-success">{{ message }}</li>
+      {% endfor %}
+      </ul>
+      {% endif %}
+      {% endwith %}
 
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                <ul id="messages" class="list-unstyled">
-                {% for message in messages %}
-                    <li class="alert alert-success">{{ message }}</li>
-                {% endfor %}
-                </ul>
-            {% endif %}
-        {% endwith %}
+      <!-- Inserir uma imagem -->
+      <img src="{{ url_for('static', filename='ugo.jpg') }}" alt="Minha Imagem">
+      <!-- Fim da imagem -->
 
-        <h1>Faça seu login</h1>
-        <form method="POST" action="{{ url_for('autenticar') }}">
-            <input type="hidden" name="proxima" value="{{ proxima or url_for('index') }}">
-            <p><label>Nome de usuário:</label> <input class="form-control" type="text" name="apelido" required></p>
-            <p><label>Senha:</label> <input class="form-control" type="password" name="senha" required></p>
-            <p><button class="btn btn-primary" type="submit">Entrar</button></p>
-        </form>
+      <h1>Faça seu login</h1>
+      <form method="POST" action="{{ url_for('autenticar') }}">
+        <input type="hidden" name="proxima" value="{{ proxima or url_for('index') }}">
+        <p><label>Nome de usuário:</label> <input class="form-control" type="text" name="apelido" required></p>
+        <p><label>Senha:</label> <input class="form-control" type="password" name="senha" required></p>
+        <p><button class="btn btn-primary" type="submit">Entrar</button></p>
+      </form>
     </div>
-</body>
+
+    <!-- Adicione animações em JavaScript -->
+    <script>
+      // Exemplo de animação simples ao clicar no botão
+      document.querySelector('.btn-primary').addEventListener('click', function() {
+        alert('Botão Clicado!');
+      });
+    </script>
+    <!-- Fim das animações em JavaScript -->
+  </body>
 </html>

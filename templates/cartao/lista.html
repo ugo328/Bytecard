@@ -2,6 +2,10 @@
 
 {% block titulo %}
 <section class="container">
+        <!-- Inserir uma imagem -->
+        <img src="{{ url_for('static', filename=' turma.jpg ') }}" alt="Imagem da turma toda BTG ">
+        <!-- Fim da imagem -->
+
 	<h1 class="d-flex justify-content-between align-items-center">
 		<span>Listagem de cartões</span>
 		<a href="/cartoes/formulario" class="btn btn-secondary">Cadastrar novo cartão</a>
