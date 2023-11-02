@@ -42,12 +42,12 @@ try:
     insert_data_cartoes_query = """
     INSERT INTO cartoes (id, numero, cvv, limite, validade, cliente, status)
     VALUES
-        (1, '8888 2222 3333 4444', '564', 9999.00, '2023-08-26', 'Gal Costa', 'ATIVO'),
-        (2, '7777 2222 3333 4444', '564', 6750.00, '2022-10-08', 'Luiz Gonzaga', 'CANCELADO'),
-        (3, '5555 6666 3333 4444', '014', 22500.00, '2025-10-14', 'Pixinguinha', 'ATIVO'),
-        (4, '5555 2222 3333 4444', '312', 5000.00, '2024-10-16', 'Tom Jobim', 'ATIVO'),
-        (5, '1111 2222 3333 4444', '564', 10000.00, '2024-10-01', 'Elis Regina', 'ATIVO'),
-        (6, '3333 4444 5555 6666', '123', 12000.00, '2026-12-11', 'Leny Andrade', 'ATIVO')
+        (1, '8888 2222 3333 4444', '564', 9999.00, '2023-08-26', ' Gustavo ', 'ATIVO'),
+        (2, '7777 2222 3333 4444', '564', 6750.00, '2022-10-08', ' Ugo Rocha ', 'CANCELADO'),
+        (3, '5555 6666 3333 4444', '014', 22500.00, '2025-10-14', ' João Asid ', 'ATIVO'),
+        (4, '5555 2222 3333 4444', '312', 5000.00, '2024-10-16', ' Daniela Asid ', 'ATIVO'),
+        (5, '1111 2222 3333 4444', '564', 10000.00, '2024-10-01', ' Camila BTG ', 'ATIVO'),
+        (6, '3333 4444 5555 6666', '123', 12000.00, '2026-12-11', ' Nicolas BTG ', 'ATIVO')
     """
     cursor.execute(insert_data_cartoes_query)
 
@@ -72,11 +72,11 @@ try:
     INSERT INTO compras (id, valor, data, estabelecimento, categoria, cartao_id)
     VALUES
         (1, 100.00, '2023-09-15 09:42:03', 'Padaria', 'Alimentação', 1),
-        (2, 500.00, '2023-06-18 17:42:03', 'Kart - Marios', 'Lazer', 1),
-        (3, 1010.78, '2023-08-11 17:42:03', 'Mario & Luigi Ltda', 'Casa', 1),
-        (4, 3723.32, '2023-09-13 18:42:03', 'Bossa Instrumentos', 'Lazer', 2),
-        (5, 3000.00, '2023-09-17 18:42:03', 'Hospital Música da Alma', 'Saúde', 6),
-        (6, 400.00, '2023-07-09 09:19:19', 'Samba Laboatório', 'Saúde', 1),
+        (2, 500.00, '2023-06-18 17:42:03', ' Casas Bahia ', 'Lazer', 1),
+        (3, 1010.78, '2023-08-11 17:42:03', ' Casa do NorteLtda ', 'Casa', 1),
+        (4, 3723.32, '2023-09-13 18:42:03', ' Reneg Instrumentos ', 'Lazer', 2),
+        (5, 3000.00, '2023-09-17 18:42:03', ' Hospital Motorola ', 'Saúde', 6),
+        (6, 400.00, '2023-07-09 09:19:19', ' Samba Laboatório', 'Saúde ', 1),
         (7, 500.00, '2023-07-18 17:42:03', 'Shopping - Centro de Compras', 'Lazer', 1),
         (8, 800.00, '2023-09-09 09:23:16', 'Restaurante Água do Mar', 'Alimentação', 2)
     """
